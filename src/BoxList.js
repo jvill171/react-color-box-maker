@@ -4,11 +4,7 @@ import Box from './Box'
 import AddBoxForm from "./AddBoxForm";
 
 const BoxList = () => {
-    const INITIAL_STATE = [
-        { id:uuid(), backgroundColor:'red', width:35, height:35 },
-        { id:uuid(), backgroundColor:'green', width:35, height:100 },
-        { id:uuid(), backgroundColor:'blue', width:100, height:35 }
-    ]
+    const INITIAL_STATE = []
     const [boxes, setBoxes] = useState(INITIAL_STATE)
 
     const addBox = (newBox) =>{
@@ -19,18 +15,20 @@ const BoxList = () => {
         setBoxes(boxes.filter(box => box.id !== e.target.parentNode.id))
     }
 
+    const boxComponents = boxes.map(({id, backgroundColor, width, height}) =>
+        <Box
+            id={id}
+            key={id}
+            backgroundColor={backgroundColor}
+            width={width}
+            height={height}
+            handleRemove={handleRemove}
+        /> )
+
     return (
         <>
             <AddBoxForm addBox={addBox}/>
-            {boxes.map(({id, backgroundColor, width, height}) =>
-                <Box
-                    id={id}
-                    key={id}
-                    backgroundColor={backgroundColor}
-                    width={width}
-                    height={height}
-                    handleRemove={handleRemove}
-                /> )}
+            {boxComponents}
         </>
     )
 }

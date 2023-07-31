@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const AddBoxForm = ({addBox}) => {
-    const MIN_LENGTH = "35"
+const AddBoxForm = ({ addBox }) => {
+    const MIN_LENGTH = "2"
     const INITIAL_STATE = {
         "backgroundColor":"#FFFFFF",
         "width": MIN_LENGTH,
@@ -15,15 +15,12 @@ const AddBoxForm = ({addBox}) => {
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        // Ensure numeric
-        formData.width = parseInt(formData.width)
-        formData.height = parseInt(formData.height)
         addBox({...formData})
         setFormData(INITIAL_STATE)
     }
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="box-form">
             <label htmlFor="backgroundColor">Color</label>
             <input
                 id="backgroundColor"
@@ -40,7 +37,6 @@ const AddBoxForm = ({addBox}) => {
                 name="width"
                 type="number"
                 min={MIN_LENGTH}
-                step="5"
                 value={formData.width}
                 onChange={handleChange}
             />
@@ -52,14 +48,13 @@ const AddBoxForm = ({addBox}) => {
                 name="height"
                 type="number"
                 min={MIN_LENGTH}
-                step="5"
                 value={formData.height}
                 onChange={handleChange}
             />
             <br/>
             <br/>
 
-            <input type="submit"/>
+            <button>Submit</button>
         </form>
     )
 }
