@@ -62,10 +62,3 @@ it("can remove a box", ()=>{
     expect(rmBtn).not.toBeInTheDocument();
 
 })
-
-
-// it("should add new box", ()=>{
-//     const { component, debug } = render(<BoxList/>)
-//     debug()
-//     // expect(queryAllByClassName(component, "box").length).toEqual(0)
-// })
